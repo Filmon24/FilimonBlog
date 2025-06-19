@@ -10,7 +10,7 @@ const Home = () => {
     <div className="home">
       <div className="background-image" style={{ backgroundImage: `url(${homeImage})` }}></div>
       <div className="content-wrapper">
-        <h1>Welcome to The Dojo Blog</h1>
+        <h1>Welcome to The My Blog</h1>
         <p className="subtitle">Discover amazing stories and insights from our community</p>
         
         { error && <div className="error">{ error }</div> }
