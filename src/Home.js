@@ -4,7 +4,7 @@ import homeImage from './images/home.jpg';
 
 const Home = () => {
   const { error, isPending, data: blogs } = useFetch('http://localhost:8001/blogs')
-  
+ 
 
   return (
     <div className="home">
