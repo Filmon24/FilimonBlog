@@ -8,10 +8,15 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div style={{ backgroundImage: `url(${homeImage})` }}></div>
-      { error && <div>{ error }</div> }
-      { isPending && <div>Loading...</div> }
-      { blogs && <BlogList blogs={blogs} /> }
+      <div className="background-image" style={{ backgroundImage: `url(${homeImage})` }}></div>
+      <div className="content-wrapper">
+        <h1>Welcome to The Dojo Blog</h1>
+        <p className="subtitle">Discover amazing stories and insights from our community</p>
+        
+        { error && <div className="error">{ error }</div> }
+        { isPending && <div className="loading">Loading...</div> }
+        { blogs && <BlogList blogs={blogs} title="All Blogs" /> }
+      </div>
     </div>
 
   );
