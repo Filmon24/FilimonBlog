@@ -1,15 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* --- General Styles (Gray & White Palette) --- */
 * {
   margin: 0;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #333333; /* Dark Gray */
   transition: all 0.3s ease;
+  text-transform: none;
 }
 
 body {
   background-color: #f5f5f5; /* Light Gray Background */
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6;
+  text-transform: none;
 }
 
 .container {
@@ -29,9 +35,16 @@ body {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-.navbar .icon {
-  width: 30px;
+.navbar .blog-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.navbar .blog-logo:hover {
+  transform: scale(1.1);
 }
 
 .navbar h1 {
@@ -40,6 +53,7 @@ body {
   font-size: 32px;
   font-weight: 700;
   letter-spacing: 0.5px;
+  font-family: "Poppins", sans-serif;
 }
 
 .navbar .links {
@@ -58,6 +72,7 @@ body {
   background-color: transparent;
   transition: all 0.3s ease;
   cursor: pointer;
+  font-family: "Inter", sans-serif;
 }
 
 .navbar a:hover,
@@ -131,6 +146,7 @@ body {
   font-size: 48px;
   margin-bottom: 20px;
   font-weight: 700;
+  font-family: "Poppins", sans-serif;
 }
 
 .home .subtitle {
@@ -139,6 +155,7 @@ body {
   font-size: 20px;
   margin-bottom: 40px;
   font-weight: 400;
+  font-family: "Inter", sans-serif;
 }
 
 /* --- Blog Preview List Enhancements --- */
@@ -171,6 +188,8 @@ body {
   color: #333333;
   margin-bottom: 10px;
   line-height: 1.3;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
 }
 
 .blog-preview p {
@@ -179,6 +198,9 @@ body {
   font-size: 15px;
   flex-grow: 1;
   margin-bottom: 15px;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
 }
 
 .blog-preview a {
@@ -198,8 +220,18 @@ body {
 .blog-preview .blog-author {
   font-size: 14px;
   color: #888888;
-  font-style: italic;
+  font-style: normal;
+  font-weight: 500;
   margin-top: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Ensure blog content is always in normal case */
+.blog-preview .blog-content,
+.blog-details .blog-content,
+.blog-details article div:not(.blog-author) {
+  text-transform: none !important;
 }
 
 /* --- Blog Details Enhancements --- */
@@ -216,6 +248,8 @@ body {
   color: #333333;
   margin-bottom: 20px;
   line-height: 1.2;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
 }
 
 .blog-details p {
@@ -223,15 +257,21 @@ body {
   line-height: 1.8;
   margin-bottom: 25px;
   font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  text-transform: none;
 }
 
 .blog-details div {
   margin: 30px 0;
-  font-style: italic;
+  font-style: normal;
   color: #666666;
   font-size: 15px;
   border-top: 1px solid #e0e0e0;
   padding-top: 20px;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.5px;
 }
 
 .blog-details button {
@@ -280,6 +320,7 @@ body {
   margin-bottom: 35px;
   text-align: center;
   font-weight: 700;
+  font-family: "Poppins", sans-serif;
 }
 
 .create label {
