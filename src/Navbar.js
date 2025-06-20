@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
 const Navbar = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const handleMenuToggle = () => setMenuOpen(!menuOpen);
     return (
         <nav className="navbar">
             <h1>The My Blog</h1>
-            <div className="links">
+            <button className="hamburger" onClick={handleMenuToggle} aria-label="Toggle menu">
+                <span className={menuOpen ? 'bar open' : 'bar'}></span>
+                <span className={menuOpen ? 'bar open' : 'bar'}></span>
+                <span className={menuOpen ? 'bar open' : 'bar'}></span>
+            </button>
+            <div className={`links${menuOpen ? ' open' : ''}`}>
                 <Link to="/">Home</Link>
                 <Link to="/create" className="new-blog-btn">New Blog</Link>
             </div>
