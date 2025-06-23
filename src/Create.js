@@ -41,11 +41,11 @@ const Create = () => {
     }
 
     const blog = { title, body, author };
-    let apiUrl = 'http://localhost:8001/blogs';
+    let apiUrl = '/api/blogs';
     let httpMethod = 'POST';
 
     if (isEditMode && blogId) {
-      apiUrl = `http://localhost:8001/blogs/${blogId}`;
+      apiUrl = `/api/blogs${blogId}`;
       httpMethod = 'PUT'; // Use PUT for updating
     }
 

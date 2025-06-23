@@ -3,7 +3,7 @@ import useFetch from "./useFetch";
 import homeImage from './images/home.jpg';
 
 const Home = () => {
-  const { error, isPending, data: blogs } = useFetch('http://localhost:8001/blogs')
+  const { error, isPending, data: blogs } = useFetch('/api/blogs')
  
 
   return (
