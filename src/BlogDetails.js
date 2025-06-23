@@ -5,11 +5,11 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const BlogDetails = () => {
   const { id } = useParams();
-  const { data: blog, error, isPending } = useFetch('/api/blogs' + id);
+  const { data: blog, error, isPending } = useFetch(`/api/blogs/${id}`);
   const history = useHistory();
 
   const handleClick = () => {
-    fetch('/api/blogs' + blog.id, {
+    fetch(`/api/blogs/${blog.id}`, {
       method: 'DELETE'
     }).then(() => {
       toast.warning("You are deleting a blog");
