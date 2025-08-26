@@ -13,7 +13,7 @@ export default function Auth() {
     setLoading(true);
     setMessage("");
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -32,7 +32,7 @@ export default function Auth() {
     setLoading(true);
     setMessage("");
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const {  error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -47,7 +47,7 @@ export default function Auth() {
 
   // 🔹 Continue with Google
   const handleGoogleSignIn = async () => {
-    const { data, error } = await supabase.auth.signInWithOAuth({
+    const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
     });
 
