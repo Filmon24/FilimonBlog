@@ -1,9 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { supabase } from './supabaseClient';
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const handleMenuToggle = () => setMenuOpen(!menuOpen);
+    
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        window.location.reload(); // refresh to trigger auth check in App.js
+      };
+
+
     return (
         <nav className="navbar">
             <h1>The My Blog</h1>
@@ -11,6 +19,9 @@ const Navbar = () => {
                 <span className={menuOpen ? 'bar open' : 'bar'}></span>
                 <span className={menuOpen ? 'bar open' : 'bar'}></span>
                 <span className={menuOpen ? 'bar open' : 'bar'}></span>
+            </button>
+            <button onClick={handleLogout} style={{ marginTop: "20px" }}>
+                Logout
             </button>
             <div className={`links${menuOpen ? ' open' : ''}`}>
                 <Link to="/">Home</Link>

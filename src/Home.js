@@ -8,6 +8,7 @@ import homeImage from './images/home.jpg';
 const Home = () => {
   const { data: blogs, isPending, error } = useSupabase();
 
+
   return (
     <div className="home">
       <div className="background-image" style={{ backgroundImage: `url(${homeImage})` }}></div>
@@ -18,6 +19,7 @@ const Home = () => {
         { error && <div className="error">{ error }</div> }
         { isPending && <div className="loading">Loading...</div> }
         { blogs && <BlogList blogs={blogs} title="All Blogs" /> }
+        
       </div>
     </div>
 
