@@ -1,26 +1,59 @@
 import { useParams, useHistory } from "react-router-dom";
-import useFetch from "./useFetch";
+import { useState, useEffect } from "react";
+import { supabase } from "./supabaseClient";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const BlogDetails = () => {
   const { id } = useParams();
-  const { data: blog, error, isPending } = useFetch(`/api/blogs/${id}`);
+  const [blog, setBlog] = useState(null);
+  const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
   const history = useHistory();
 
-  const handleClick = () => {
-    fetch(`/api/blogs/${blog.id}`, {
-      method: 'DELETE'
-    }).then(() => {
-      toast.warning("You are deleting a blog");
-      setTimeout(() => {
-        history.push('/');
-      }, 3000);
-    });
+  useEffect(() => {
+    const fetchBlog = async () => {
+      setIsPending(true);
+      const { data, error } = await supabase
+        .from('blogs')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error) {
+        setError(error.message);
+        setIsPending(false);
+      } else {
+        setBlog(data);
+        setIsPending(false);
+      }
+    };
+
+    fetchBlog();
+  }, [id]);
+
+  const handleClick = async () => {
+    try {
+      const { error } = await supabase
+        .from('blogs')
+        .delete()
+        .eq('id', blog.id);
+
+      if (error) {
+        toast.error('Failed to delete blog');
+      } else {
+        toast.warning("You are deleting a blog");
+        setTimeout(() => {
+          history.push('/');
+        }, 3000);
+      }
+    } catch (err) {
+      toast.error('Failed to delete blog');
+    }
   };
 
   const handleEdit = () => {
-    history.push('/create', { blogData: blog }); // Navigate to /create with blog data as state
+    history.push('/create', { blogData: blog });
   };
 
   return (
@@ -33,7 +66,7 @@ const BlogDetails = () => {
           <p>Written by {blog.author}</p>
           <div>{blog.body}</div>
           <button onClick={handleClick}>Delete</button>
-          <button onClick={handleEdit}>Edit Blog</button> {/* Changed onClick to handleEdit */}
+          <button onClick={handleEdit}>Edit Blog</button>
         </article>
       )}
       <ToastContainer />

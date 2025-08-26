@@ -1,10 +1,12 @@
 import BlogList from "./BlogList";
-import useFetch from "./useFetch";
+import useSupabase from "./useSupabase";
+
+
+
 import homeImage from './images/home.jpg';
 
 const Home = () => {
-  const { error, isPending, data: blogs } = useFetch('/api/blogs')
- 
+  const { data: blogs, isPending, error } = useSupabase();
 
   return (
     <div className="home">

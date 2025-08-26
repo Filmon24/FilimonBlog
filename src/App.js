@@ -6,6 +6,7 @@ import BlogDetails from './BlogDetails';
 import NotFound from './NotFound';
 import Footer from './Footer';
 
+
 function App() {
   return (
     <>

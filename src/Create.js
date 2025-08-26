@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
+import { supabase } from './supabaseClient';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -9,12 +10,11 @@ const Create = () => {
   const [author, setAuthor] = useState('');
   const [isPending, setIsPending] = useState(false);
   const history = useHistory();
-  const location = useLocation(); // Get access to the location object
+  const location = useLocation();
   const [isEditMode, setIsEditMode] = useState(false);
   const [blogId, setBlogId] = useState(null);
 
   useEffect(() => {
-    // Check if we have blogData in the location state (meaning we are in edit mode)
     if (location.state && location.state.blogData) {
       const { blogData } = location.state;
       setTitle(blogData.title);
@@ -23,16 +23,15 @@ const Create = () => {
       setIsEditMode(true);
       setBlogId(blogData.id);
     } else {
-      // Reset state if we are not in edit mode (e.g., directly accessing /create)
       setTitle('');
       setBody('');
       setAuthor('');
       setIsEditMode(false);
       setBlogId(null);
     }
-  }, [location.state]); // Re-run effect when location.state changes
+  }, [location.state]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!title || !body) {
@@ -41,33 +40,39 @@ const Create = () => {
     }
 
     const blog = { title, body, author };
-    let apiUrl = '/api/blogs';
-    let httpMethod = 'POST';
-
-    if (isEditMode && blogId) {
-      apiUrl = `/api/blogs${blogId}`;
-      httpMethod = 'PUT'; // Use PUT for updating
-    }
-
     setIsPending(true);
-    fetch(apiUrl, {
-      method: httpMethod,
-      headers: { "content-Type": "application/json" },
-      body: JSON.stringify(blog)
-    })
-    .then(() => {
-      console.log(`${isEditMode ? 'Blog updated' : 'New blog added'}`);
-      setIsPending(false);
-      toast.success(`Blog ${isEditMode ? 'updated' : 'added'} successfully!`);
+
+    try {
+      if (isEditMode && blogId) {
+        // Update existing blog
+        const { error } = await supabase
+          .from('blogs')
+          .update(blog)
+          .eq('id', blogId);
+
+        if (error) throw error;
+        
+        toast.success('Blog updated successfully!');
+      } else {
+        // Create new blog
+        const { error } = await supabase
+          .from('blogs')
+          .insert([blog]);
+
+        if (error) throw error;
+        
+        toast.success('Blog added successfully!');
+      }
+
       setTimeout(() => {
         history.push('/');
-      }, 3000);
-    })
-    .catch(() => {
-      toast.error(`Failed to ${isEditMode ? 'update' : 'add'} blog`);
+      }, 2000);
+    } catch (err) {
+      toast.error(`Failed to ${isEditMode ? 'update' : 'add'} blog: ${err.message}`);
+    } finally {
       setIsPending(false);
-    });
-  }
+    }
+  };
 
   return (
     <div className="create">
@@ -84,11 +89,12 @@ const Create = () => {
           value={body}
           onChange={(e) => setBody(e.target.value)}
         ></textarea>
-        <label>Blog author :</label>
+        <label>Blog author:</label>
         <select
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
         >
+          <option value="">Select author</option>
           <option value="mario">mario</option>
           <option value="yoshi">yoshi</option>
           <option value="filmon">filmon</option>
@@ -99,6 +105,6 @@ const Create = () => {
       <ToastContainer />
     </div>
   );
-}
+};
 
 export default Create;
