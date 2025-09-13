@@ -58,7 +58,7 @@ export default function Auth() {
 
   return (
     <div style={{ maxWidth: "400px", margin: "2rem auto", textAlign: "center" }}>
-      <h2>Welcome to DogoBlog 🐶</h2>
+      <h2>Welcome to My Personal Blog</h2>
       <form onSubmit={handleSignIn}>
         <input
           type="email"
