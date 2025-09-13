@@ -54,20 +54,45 @@ export default function Auth() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-100 to-gray-300">
-      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md text-center">
-        <h2 className="text-3xl font-extrabold text-gray-800 mb-6">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
+      <div className="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
+        {/* Header */}
+        <h1 className="text-2xl font-bold text-gray-900 text-center">
           Welcome to My Personal Blog
-        </h2>
+        </h1>
+        <p className="text-gray-500 text-center mt-2 mb-6">
+          Sign in to continue
+        </p>
 
+        {/* Google Sign In */}
+        <button
+          onClick={handleGoogleSignIn}
+          className="w-full flex items-center justify-center gap-3 border rounded-lg py-2.5 text-gray-700 font-medium hover:bg-gray-50 transition"
+        >
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google"
+            className="w-5 h-5"
+          />
+          Continue with Google
+        </button>
+
+        {/* Divider */}
+        <div className="flex items-center my-6">
+          <hr className="flex-grow border-gray-300" />
+          <span className="mx-3 text-gray-400 text-sm">OR</span>
+          <hr className="flex-grow border-gray-300" />
+        </div>
+
+        {/* Form */}
         <form onSubmit={handleSignIn} className="space-y-4">
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <input
             type="password"
@@ -75,45 +100,30 @@ export default function Auth() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 text-lg font-semibold text-white bg-blue-600 rounded-xl shadow-md hover:bg-blue-700 transition disabled:opacity-50"
+            className="w-full py-2.5 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
           >
             {loading ? "Loading..." : "Sign In"}
           </button>
           <button
             onClick={handleSignUp}
             disabled={loading}
-            className="w-full py-3 text-lg font-semibold text-blue-600 border-2 border-blue-600 rounded-xl shadow-md hover:bg-blue-50 transition disabled:opacity-50"
+            className="w-full py-2.5 border border-blue-600 text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition disabled:opacity-50"
           >
             {loading ? "Loading..." : "Sign Up"}
           </button>
         </form>
 
-        <div className="flex items-center my-6">
-          <hr className="flex-grow border-gray-300" />
-          <span className="mx-3 text-gray-500">OR</span>
-          <hr className="flex-grow border-gray-300" />
-        </div>
-
-        <button
-          onClick={handleGoogleSignIn}
-          className="w-full py-3 text-lg font-semibold flex items-center justify-center gap-3 bg-white border rounded-xl shadow-md hover:bg-gray-50 transition"
-        >
-          <img
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google"
-            className="w-6 h-6"
-          />
-          Continue with Google
-        </button>
-
+        {/* Feedback message */}
         {message && (
-          <p className="mt-6 text-blue-600 font-medium">{message}</p>
+          <p className="mt-6 text-center text-blue-600 font-medium">
+            {message}
+          </p>
         )}
       </div>
     </div>
