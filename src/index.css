@@ -4,13 +4,13 @@
 * {
   margin: 0;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  color: #333333; /* Dark Gray */
+  color: #333333;
   transition: all 0.3s ease;
   text-transform: none;
 }
 
 body {
-  background-color: #f5f5f5; /* Light Gray Background */
+  background-color: #f5f5f5;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -30,9 +30,11 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #e0e0e0; /* Light Gray Border */
-  background-color: #ffffff; /* White background */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
 }
 
 .navbar .blog-logo {
@@ -48,7 +50,7 @@ body {
 }
 
 .navbar h1 {
-  color: #555555; /* Medium Gray for Branding */
+  color: #555555;
   margin: 0;
   font-size: 32px;
   font-weight: 700;
@@ -78,7 +80,7 @@ body {
 .navbar a:hover,
 .navbar a.active {
   color: #fff;
-  background-color: #666666; /* Medium Gray hover */
+  background-color: #666666;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(102, 102, 102, 0.3);
 }
@@ -198,9 +200,6 @@ body {
   font-size: 15px;
   flex-grow: 1;
   margin-bottom: 15px;
-  font-style: normal;
-  font-weight: 400;
-  text-transform: none;
 }
 
 .blog-preview a {
@@ -220,18 +219,10 @@ body {
 .blog-preview .blog-author {
   font-size: 14px;
   color: #888888;
-  font-style: normal;
   font-weight: 500;
   margin-top: 10px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-}
-
-/* Ensure blog content is always in normal case */
-.blog-preview .blog-content,
-.blog-details .blog-content,
-.blog-details article div:not(.blog-author) {
-  text-transform: none !important;
 }
 
 /* --- Blog Details Enhancements --- */
@@ -257,20 +248,16 @@ body {
   line-height: 1.8;
   margin-bottom: 25px;
   font-size: 17px;
-  font-style: normal;
-  font-weight: 400;
-  text-transform: none;
 }
 
 .blog-details div {
   margin: 30px 0;
-  font-style: normal;
   color: #666666;
   font-size: 15px;
   border-top: 1px solid #e0e0e0;
   padding-top: 20px;
   font-weight: 500;
-  text-transform: none;
+  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
@@ -282,7 +269,6 @@ body {
   border-radius: 8px;
   cursor: pointer;
   font-size: 18px;
-  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
   margin-top: 15px;
   margin-right: 15px;
   box-shadow: 0 3px 6px rgba(102, 102, 102, 0.2);
@@ -340,7 +326,6 @@ body {
   margin-bottom: 25px;
   border: 1px solid #e0e0e0;
   border-radius: 10px;
-  box-sizing: border-box;
   font-size: 16px;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -366,7 +351,6 @@ body {
   border-radius: 8px;
   cursor: pointer;
   font-size: 18px;
-  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
   margin-top: 25px;
   box-shadow: 0 3px 6px rgba(102, 102, 102, 0.2);
 }
@@ -414,7 +398,6 @@ body {
   text-decoration: none;
   border-radius: 10px;
   font-size: 22px;
-  transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
   box-shadow: 0 3px 6px rgba(102, 102, 102, 0.2);
 }
 
@@ -424,113 +407,7 @@ body {
   box-shadow: 0 5px 10px rgba(102, 102, 102, 0.4);
 }
 
-/* --- Create Page Specific Styles --- */
-.create form {
-  background-color: #ffffff;
-  opacity: 0.95;
-  border-radius: 16px;
-  padding: 30px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* --- Loading and Error States --- */
-.loading {
-  text-align: center;
-  padding: 50px;
-  color: #666666;
-  font-size: 18px;
-}
-
-.error {
-  text-align: center;
-  padding: 50px;
-  color: #ff4444;
-  font-size: 18px;
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-  margin: 20px;
-}
-
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-  .navbar h1 {
-    font-size: 28px;
-  }
-
-  .navbar .links {
-    margin-left: 0;
-    margin-top: 15px;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .navbar a {
-    margin: 8px 0;
-    width: calc(100% - 40px);
-  }
-
-  .content, .blog-details, .create, .not-found {
-    padding: 15px;
-  }
-
-  .blog-list {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .blog-preview {
-    padding: 20px;
-  }
-
-  .blog-preview h2 {
-    font-size: 22px;
-  }
-
-  .blog-preview img {
-    height: 180px;
-  }
-
-  .blog-details h2 {
-    font-size: 30px;
-  }
-
-  .blog-details p {
-    font-size: 16px;
-  }
-
-  .create h2 {
-    font-size: 26px;
-  }
-
-  .create input,
-  .create textarea,
-  .create select {
-    padding: 10px 12px;
-  }
-
-  .home h1 {
-    font-size: 36px;
-  }
-
-  .home .subtitle {
-    font-size: 18px;
-  }
-}
-
-.blog-list-title {
-  text-align: center;
-  width: 100%;
-  margin-bottom: 10px;
-  font-size: 2rem;
-  font-weight: 700;
-  font-family: "Poppins", sans-serif;
-}
-.navbar {
-  position: relative;
-  z-index: 10;
-}
-
+/* --- Footer --- */
 .footer {
   width: 100%;
   background: #9e8989;
@@ -567,7 +444,7 @@ body {
   filter: brightness(1.3);
 }
 
-/* Hamburger menu styles */
+/* --- Hamburger menu styles --- */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -626,10 +503,154 @@ body {
   }
   .navbar a {
     margin: 10px 20px;
-    width: auto;
     font-size: 18px;
     padding: 10px 0;
-    display: block;
   }
 }
 
+/* =========================================================
+   AUTH PAGE STYLES
+========================================================= */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f7f9fc;
+  padding: 1rem;
+}
+
+.auth-card {
+  background: #fff;
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.auth-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.5rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.auth-subtitle {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+/* Google Button */
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+  font-size: 1rem;
+}
+
+.google-btn img {
+  width: 18px;
+  height: 18px;
+}
+
+.google-btn:hover {
+  background: #f2f2f2;
+  transform: translateY(-1px);
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+.divider hr {
+  flex-grow: 1;
+  border: none;
+  border-top: 1px solid #ddd;
+}
+
+.divider span {
+  margin: 0 0.75rem;
+}
+
+/* Form */
+.auth-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+/* Buttons */
+.btn {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.primary-btn {
+  background: #2563eb;
+  color: #fff;
+}
+
+.primary-btn:hover {
+  background: #1e4ed8;
+}
+
+.secondary-btn {
+  background: #fff;
+  border: 1px solid #2563eb;
+  color: #2563eb;
+}
+
+.secondary-btn:hover {
+  background: #f0f5ff;
+}
+
+/* Feedback */
+.auth-message {
+  margin-top: 1.5rem;
+  color: #2563eb;
+  font-weight: 500;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .auth-card {
+    padding: 1.5rem;
+  }
+  .auth-title {
+    font-size: 1.5rem;
+  }
+}
