@@ -20,14 +20,14 @@ const Navbar = () => {
                 <span className={menuOpen ? 'bar open' : 'bar'}></span>
                 <span className={menuOpen ? 'bar open' : 'bar'}></span>
             </button>
-            <button className="logout-btn" onClick={handleLogout}>
-                Logout
-            </button>
+            
             <div className={`links${menuOpen ? ' open' : ''}`}>
+                <button className="logout-btn" onClick={handleLogout}>
+                    Logout
+                </button>
                 <Link to="/">Home</Link>
                 <Link to="/create" className="new-blog-btn">New Blog</Link>
             </div>
-            <img src={process.env.PUBLIC_URL + '/blog logo.png'} alt='Blog Logo' className='blog-logo' />
         </nav>
     );
 }
