@@ -85,7 +85,7 @@ body {
   box-shadow: 0 4px 8px rgba(102, 102, 102, 0.3);
 }
 .navbar .logout-btn{
-  margin-left: 650px;
+  margin-left: 20px;
   background-color: #666666;
   color: #ffffff;
   border-radius: 25px;
@@ -668,4 +668,12 @@ body {
   .auth-title {
     font-size: 1.5rem;
   }
+  @media (max-width: 768px) {
+    .navbar .logout-btn {
+      width: 100%;
+      margin: 10px 20px;
+      text-align: left;
+    }
+  }
+  
 }
