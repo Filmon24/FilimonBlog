@@ -20,7 +20,7 @@ const Navbar = () => {
                 <span className={menuOpen ? 'bar open' : 'bar'}></span>
                 <span className={menuOpen ? 'bar open' : 'bar'}></span>
             </button>
-            <button onClick={handleLogout} style={{ marginTop: "20px" }}>
+            <button className="logout-btn" onClick={handleLogout}>
                 Logout
             </button>
             <div className={`links${menuOpen ? ' open' : ''}`}>

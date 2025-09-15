@@ -84,6 +84,21 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(102, 102, 102, 0.3);
 }
+.navbar .logout-btn{
+  margin-left: 650px;
+  background-color: #666666;
+  color: #ffffff;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+}
+.navbar .logout-btn:hover{
+  background-color: #555555;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(102, 102, 102, 0.3);
+}
 
 .navbar .new-blog-btn {
   background-color: #666666;
