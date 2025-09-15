@@ -670,7 +670,7 @@ body {
   }
   @media (max-width: 768px) {
     .navbar .logout-btn {
-      width: 100%;
+      width: 80%;
       margin: 10px 20px;
       text-align: left;
     }
