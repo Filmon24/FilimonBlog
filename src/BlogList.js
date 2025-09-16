@@ -7,6 +7,12 @@ const BlogList = ({blogs, title}) => {
                 {blogs.map((blog) => (
                     <div className="blog-preview" key={blog.id}>
                         <Link to={`/blogs/${blog.id}`}>
+                            {blog.image_url && (
+                                <img
+                                    src={blog.image_url}
+                                    alt={blog.title}
+                                />
+                            )}
                             <h2>{ blog.title }</h2>
                             <p>Written by {blog.author}</p>
                         </Link>

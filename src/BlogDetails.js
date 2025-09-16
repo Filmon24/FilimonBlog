@@ -62,6 +62,12 @@ const BlogDetails = () => {
       {error && <div>{error}</div>}
       {blog && (
         <article>
+          {blog.image_url && (
+            <img
+              src={blog.image_url}
+              alt={blog.title}
+            />
+          )}
           <h2>{blog.title}</h2>
           <p>Written by {blog.author}</p>
           <div>{blog.body}</div>

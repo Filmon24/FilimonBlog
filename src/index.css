@@ -181,6 +181,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 30px;
   margin-top: 30px;
+  align-items: start; /* prevent cards without images from stretching */
 }
 
 .blog-preview {
@@ -225,11 +226,14 @@ body {
 
 .blog-preview img {
   width: 100%;
-  height: 220px;
+  aspect-ratio: 4 / 5; /* card-like portrait */
+  height: auto;
   object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  border-radius: 18px;
+  margin-bottom: 16px;
 }
+
+/* removed placeholder so cards without images collapse naturally */
 
 .blog-preview .blog-author {
   font-size: 14px;
@@ -296,12 +300,14 @@ body {
 }
 
 .blog-details img {
-  width: 100%;
-  max-height: 450px;
+  display: block;
+  width: min(100%, 420px);
+  aspect-ratio: 4 / 5;
+  height: auto;
   object-fit: cover;
-  border-radius: 12px;
-  margin-bottom: 25px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  border-radius: 18px;
+  margin: 0 auto 20px auto;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
 /* --- Create New Blog Form Enhancements --- */
@@ -358,6 +364,17 @@ body {
   resize: vertical;
 }
 
+/* Proportional preview for selected image in create form */
+.create .image-preview img {
+  display: block;
+  width: min(100%, 320px);
+  aspect-ratio: 4 / 5;
+  height: auto;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
 .create button {
   background-color: #666666;
   color: #fff;
@@ -381,6 +398,22 @@ body {
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+/* small subtle remove button for image preview */
+.create .btn-remove {
+  background-color: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.25);
+}
+
+.create .btn-remove:hover {
+  background-color: #dc2626;
 }
 
 /* --- 404 Page Enhancements --- */
