@@ -70,7 +70,7 @@ const BlogDetails = () => {
           )}
           <h2>{blog.title}</h2>
           <p>Written by {blog.author}</p>
-          <div>{blog.body}</div>
+          <div>{blog.body ? blog.body.toLowerCase() : ''}</div>
           <button onClick={handleClick}>Delete</button>
           <button onClick={handleEdit}>Edit Blog</button>
         </article>
