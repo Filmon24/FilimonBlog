@@ -11,41 +11,46 @@ import Footer from './Footer';
 
 function App() {
   const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // ✅ v2 way to get session
+    // Check existing session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      setLoading(false);  // ✅ done loading
     });
 
-    // ✅ v2 way to listen to auth changes
+    // Listen for changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, newSession) => {
-        setSession(newSession);
+      (_event, session) => {
+        setSession(session);
+        setLoading(false); // ✅ done loading after change
       }
     );
 
     return () => subscription.unsubscribe();
   }, []);
 
-  // If user is not logged in, show Auth component
-  if (!session) return <Auth />;
+  if (loading) {
+    return <div className="loading">Loading...</div>; // could be spinner, skeleton, etc.
+  }
 
-  // If logged in, show full app
   return (
     <Router>
-      <div className="App">
-        <Navbar />
-        <div className="content">
+      {session ? (
+        <>
+          <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/create" component={Create} />
             <Route path="/blogs/:id" component={BlogDetails} />
             <Route path="*" component={NotFound} />
           </Switch>
-        </div>
-        <Footer />
-      </div>
+          <Footer />
+        </>
+      ) : (
+        <Auth />
+      )}
     </Router>
   );
 }
