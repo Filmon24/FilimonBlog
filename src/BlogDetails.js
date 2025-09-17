@@ -10,6 +10,7 @@ const BlogDetails = () => {
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
   const history = useHistory();
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -29,7 +30,14 @@ const BlogDetails = () => {
       }
     };
 
+    // fetch current user for ownership check
+    const fetchUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setCurrentUser(user || null);
+    };
+
     fetchBlog();
+    fetchUser();
   }, [id]);
 
   const handleClick = async () => {
@@ -56,6 +64,8 @@ const BlogDetails = () => {
     history.push('/create', { blogData: blog });
   };
 
+  const isOwner = blog && currentUser && blog.user_id === currentUser.id;
+
   return (
     <div className="blog-details">
       {isPending && <div>Loading...</div>}
@@ -71,8 +81,12 @@ const BlogDetails = () => {
           <h2>{blog.title}</h2>
           <p>Written by {blog.author}</p>
           <div>{blog.body ? blog.body.toLowerCase() : ''}</div>
-          <button onClick={handleClick}>Delete</button>
-          <button onClick={handleEdit}>Edit Blog</button>
+          {isOwner && (
+            <>
+              <button onClick={handleClick}>Delete</button>
+              <button onClick={handleEdit}>Edit Blog</button>
+            </>
+          )}
         </article>
       )}
       <ToastContainer />

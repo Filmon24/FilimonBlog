@@ -137,13 +137,20 @@ const Create = () => {
     setIsPending(true);
 
     try {
+      // Ensure user is authenticated and get their id for ownership
+      const { data: { user }, error: userError } = await supabase.auth.getUser();
+      if (userError || !user) {
+        throw new Error('You must be signed in to create or edit blogs.');
+      }
+
       const image_url = await uploadImageIfNeeded();
-      const blog = { title, body: body.toLowerCase(), author, image_url };
+      const blogUpdate = { title, body: body.toLowerCase(), author, image_url };
+      const blogInsert = { ...blogUpdate, user_id: user.id };
       if (isEditMode && blogId) {
         // Update existing blog
         const { error } = await supabase
           .from('blogs')
-          .update(blog)
+          .update(blogUpdate)
           .eq('id', blogId);
 
         if (error) throw error;
@@ -153,7 +160,7 @@ const Create = () => {
         // Create new blog
         const { error } = await supabase
           .from('blogs')
-          .insert([blog]);
+          .insert([blogInsert]);
 
         if (error) throw error;
         
